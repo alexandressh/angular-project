@@ -24,6 +24,14 @@ server.all("/app/*", function(req, res, next) {
     res.sendfile("index.html", { root: __dirname + "/app" });
 });
 
+server.all('/images/*', function(req, res, next) {
+    res.sendfile("", { root: __dirname + '/app/images' });
+});
+
+server.all('/styles/*', function(req, res, next) {
+    res.sendfile("", { root: __dirname + '/app/styles'});
+}) 
+
 server.use(bodyParser.json());
 server.use(bodyParser.urlencoded({
     extended: true

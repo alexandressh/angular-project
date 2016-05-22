@@ -8,14 +8,14 @@ function aboutRouteConfig($stateProvider, $urlRouterProvider) {
             url: '/about',
             views: {
                 // the main template will be placed here (relatively named)
-                '': { templateUrl: './about/about.html' },
+                '': { templateUrl: './scripts/about/about.html' },
     
                 // the child views will be defined here (absolutely named)
                 'columnOne@about': { template: 'Look I am a column!' },
     
                 // for column two, we'll define a separate controller 
                 'columnTwo@about': { 
-                    templateUrl: './partials/table-data.html',
+                    templateUrl: './scripts/partials/table-data.html',
                     controller: 'scotchController'
                 }
             }

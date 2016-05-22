@@ -5,11 +5,11 @@ function homeRouteConfig($stateProvider, $urlRouterProvider) {
      $stateProvider
      .state('home', {
             url: '/home',
-            templateUrl: './home/home.html',
+            templateUrl: './scripts/home/home.html',
             controller: 'HomeController'
         })
         .state('home.pictures', {
             url: '/pic',
-            templateUrl: './home/partial-home-list.html',
+            templateUrl: './scripts/home/partial-home-list.html',
         })
 }
