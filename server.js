@@ -21,15 +21,15 @@ server.all("/v1/*", function(req, res) {
 });
 
 server.all("/app/*", function(req, res, next) {
-    res.sendfile("index.html", { root: __dirname + "/app" });
+    res.sendfile("index.html", { root: __dirname + "/build" });
 });
 
 server.all('/images/*', function(req, res, next) {
-    res.sendfile("", { root: __dirname + '/app/images' });
+    res.sendfile("", { root: __dirname + '/images' });
 });
 
 server.all('/styles/*', function(req, res, next) {
-    res.sendfile("", { root: __dirname + '/app/styles'});
+    res.sendfile("", { root: __dirname + '/css'});
 }) 
 
 server.use(bodyParser.json());
