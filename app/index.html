@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en" ng-app="app">
+<head>
+  <meta charset="utf-8">
+  <title>My App</title>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/lodash/dist/lodash.js"></script>
+  <script src="bower_components/restangular/dist/restangular.js"></script>
+  <script src="app.module.js"></script>
+  <script src="app.config.js"></script>
+  
+  <!-- HOME -->
+  <script src="./home/home.js"></script>
+  <script src="./home/home.routes.js"></script>
+  
+  <!-- ABOUT -->
+  <script src="./about/about.js"></script>
+  <script src="./about/about.routes.js"></script>
+  
+  <!-- SERVICES -->
+  <script src="./services/instagram.service.js"></script>
+  
+  
+</head>
+
+<body>
+    <div ng-include="'root/header.html'"></div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+        <div ui-view></div>
+    </div>
+
+</body>
+
+</html>
