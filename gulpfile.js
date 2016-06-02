@@ -1,3 +1,4 @@
+//Leaving all the imports for future implementation of PROD profile
 var gulp = require('gulp'),
   gutil = require('gulp-util'),
   sass = require('gulp-ruby-sass'),
@@ -12,74 +13,38 @@ var gulp = require('gulp'),
   
 var paths = {
     scripts: {
-      src: 'app/scripts/**/*.js',
+      src: 'app/**/*.js',
       dest: 'build/js'
-    },
-    config: {
-      app: 'app/app.config.js',
-      modules: 'app/app.modules.js'
     },
     style: {
       src: 'app/styles/**/*.scss',
-      dest: 'build/css'
+      dest: 'app/styles/theme'
     },
-    build: 'build',
     index: 'app/index.html',
     server: 'server.js'
 };
 
   // sass task
-  gulp.task('sass', function () {
+  gulp.task('sass:compile', function () {
    return sass(paths.style.src, { 
         noCache: true,
         style: "expanded"
         })
       .pipe(gulp.dest(paths.style.dest))
-      .pipe(rename({ suffix: '.min' }))
-      .pipe(cssnano())
-      .pipe(gulp.dest(paths.style.dest));
-  });
-
-  gulp.task('js', function() {
-    gulp.src([paths.config.app, paths.config.modules, paths.scripts.src])
-    .pipe(concat('app.js'))
-    .pipe(gulp.dest(paths.scripts.dest))
-    .pipe(rename({ suffix: '.min' }))
-    .pipe(uglify())
-    .pipe(gulp.dest(paths.scripts.dest));
   });
   
-  gulp.task('index', function() {
-    gulp.src(paths.index)
-    .pipe(gulp.dest(paths.build));
-  });
-  
-  
-  gulp.task('bower', function() {
-    gulp.src(mainBowerFiles().concat())
-    .pipe(concat('vendor.js'))
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(gulp.dest(paths.scripts.dest));
+  gulp.task('sass:watch', function() {
+    gulp.watch(paths.style.src, function() {
+      gulp.run('sass:compile');
+    });
   });
   
   gulp.task( 'server:start', function() {
       server.listen( { path: paths.server} );
   });
    
-  // gulp.task( 'server:restart', function() {
-  //     gulp.watch( [ paths.server ], server.restart );
-  // });
-
-  gulp.task('watch', function() {
-    gulp.watch(paths.style.src, function() {
-      gulp.run('sass');
-    });
-
-    gulp.watch(paths.scripts.src, function() {
-      gulp.run('js');
-    });
+  gulp.task( 'server:watch', function() {
+      gulp.watch( [ paths.server ], server.restart );
   });
-
-// gulp.task('default', ['bower', 'sass', 'js', 'index', 'watch', 'server:start', 'server:restart']);
-gulp.task('default', ['bower', 'sass', 'js', 'index', 'server:start']);
+  
+gulp.task('default', ['sass:compile', 'server:start', 'sass:watch', 'server:watch']);
