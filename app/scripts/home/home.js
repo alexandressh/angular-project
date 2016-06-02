@@ -4,7 +4,7 @@ angular.module('app')
 HomeController.$inject = ['$scope', 'instagramFactory'];
 
 function HomeController($scope, instagramFactory) {
-    $scope.pictures = [];
+    $scope.pictures = null;
     
     $scope.fetchPicturesTag = fetchPicturesTag;
     
